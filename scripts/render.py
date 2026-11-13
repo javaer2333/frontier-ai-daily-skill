@@ -167,7 +167,10 @@ def collect_items(data: dict) -> list[dict]:
     for block in data.get("international") or []:
         out.extend(block.get("items") or [])
     out.extend(data.get("china") or [])
-    out.extend(data.get("other") or [])
+    news = data.get("capital_news")
+    if news is None:
+        news = data.get("other") or []
+    out.extend(news)
     return out
 
 
@@ -298,7 +301,10 @@ def build_page(data: dict, issues: list[dict], site: str, motto: str, edition: s
             if block.get("items"):
                 candidates.append(block["items"][0])
         candidates.extend((data.get("china") or [])[:1])
-        candidates.extend((data.get("other") or [])[:1])
+        news = data.get("capital_news")
+        if news is None:
+            news = data.get("other") or []
+        candidates.extend(news[:1])
         seen: set[str] = set()
         for c in candidates:
             title = str(c.get("title") or "")
@@ -308,7 +314,7 @@ def build_page(data: dict, issues: list[dict], site: str, motto: str, edition: s
             if len(highlights) == 3:
                 break
 
-    # --- 各版
+    # --- 各版（顺序：国际 / 国内 / 模型动态 / GitHub / 网站发现 / 资本动态 / 市场行情 / 资本观察）
     sections: list[str] = []
     index_entries: list[tuple[str, str, str]] = []
     no = 0
@@ -325,41 +331,12 @@ def build_page(data: dict, issues: list[dict], site: str, motto: str, edition: s
         index_entries.append((sid, "国际", f"{intl_count} 条"))
         sections.append(section(no, sid, "国际", f"{intl_count} 条", rows_html(intl_items)))
 
-    for field, label in (("china", "国内"), ("other", "其他动态")):
-        rows = data.get(field) or []
-        if not rows:
-            continue
+    china_rows = data.get("china") or []
+    if china_rows:
         no += 1
         sid = f"s-{no}"
-        index_entries.append((sid, label, f"{len(rows)} 条"))
-        sections.append(section(no, sid, label, f"{len(rows)} 条", rows_html([story(r) for r in rows])))
-
-    market = data.get("market") or {}
-    if market.get("rows"):
-        no += 1
-        sid = f"s-{no}"
-        index_entries.append((sid, "市场行情", f"{len(market['rows'])} 项"))
-        trs = []
-        for row in market["rows"]:
-            direction = str(row.get("dir") or "flat")
-            cls = {"up": "dir-up", "down": "dir-down"}.get(direction, "dir-flat")
-            arrow = {"up": " ↑", "down": " ↓"}.get(direction, "")
-            trs.append(
-                f'<tr><td class="name">{esc(row.get("name"))}</td>'
-                f'<td class="price">{esc(row.get("price"))}</td>'
-                f'<td class="{cls}">{esc(row.get("change"))}{arrow}</td></tr>'
-            )
-        note = str(market.get("note") or "")
-        asof = " · ".join(x for x in [str(market.get("as_of") or ""), str(market.get("source") or "")] if x)
-        body = (
-            '<div class="market-wrap"><table class="market">'
-            "<thead><tr><th>品种</th><th>价格</th><th>24 小时 / 日涨跌</th></tr></thead>"
-            f'<tbody>{"".join(trs)}</tbody></table>'
-            + (f'<p class="market-note">{esc(note)}</p>' if note else "")
-            + (f'<p class="market-asof">{esc(asof)}</p>' if asof else "")
-            + "</div>"
-        )
-        sections.append(section(no, sid, "市场行情", f"{len(market['rows'])} 项", body))
+        index_entries.append((sid, "国内", f"{len(china_rows)} 条"))
+        sections.append(section(no, sid, "国内", f"{len(china_rows)} 条", rows_html([story(r) for r in china_rows])))
 
     models = data.get("models") or {}
     if models.get("rows"):
@@ -420,7 +397,7 @@ def build_page(data: dict, issues: list[dict], site: str, motto: str, edition: s
     if sites.get("rows"):
         no += 1
         sid = f"s-{no}"
-        index_entries.append((sid, "网站推荐", f"{len(sites['rows'])} 个"))
+        index_entries.append((sid, "网站发现", f"{len(sites['rows'])} 个"))
         lis = []
         for row in sites["rows"]:
             lis.append(
@@ -432,9 +409,46 @@ def build_page(data: dict, issues: list[dict], site: str, motto: str, edition: s
             )
         body = f'<div class="sites" style="padding-top:8px">{"".join(lis)}</div>'
         note = esc(sites.get("as_of")) if sites.get("as_of") else None
-        sections.append(section(no, sid, "网站推荐", f"{len(sites['rows'])} 个", body, note=note))
+        sections.append(section(no, sid, "网站发现", f"{len(sites['rows'])} 个", body, note=note))
 
-    # 资本观察放在最后一版（原「一句话观察」的位置）
+    # 资本动态：新期刊写 capital_news（只放资本相关）；历史期刊沿用 other（原「其他动态」）
+    capital_news = data.get("capital_news")
+    if capital_news is None:
+        capital_news = data.get("other") or []
+    if capital_news:
+        no += 1
+        sid = f"s-{no}"
+        index_entries.append((sid, "资本动态", f"{len(capital_news)} 条"))
+        sections.append(section(no, sid, "资本动态", f"{len(capital_news)} 条", rows_html([story(r) for r in capital_news])))
+
+    market = data.get("market") or {}
+    if market.get("rows"):
+        no += 1
+        sid = f"s-{no}"
+        index_entries.append((sid, "市场行情", f"{len(market['rows'])} 项"))
+        trs = []
+        for row in market["rows"]:
+            direction = str(row.get("dir") or "flat")
+            cls = {"up": "dir-up", "down": "dir-down"}.get(direction, "dir-flat")
+            arrow = {"up": " ↑", "down": " ↓"}.get(direction, "")
+            trs.append(
+                f'<tr><td class="name">{esc(row.get("name"))}</td>'
+                f'<td class="price">{esc(row.get("price"))}</td>'
+                f'<td class="{cls}">{esc(row.get("change"))}{arrow}</td></tr>'
+            )
+        note = str(market.get("note") or "")
+        asof = " · ".join(x for x in [str(market.get("as_of") or ""), str(market.get("source") or "")] if x)
+        body = (
+            '<div class="market-wrap"><table class="market">'
+            "<thead><tr><th>品种</th><th>价格</th><th>24 小时 / 日涨跌</th></tr></thead>"
+            f'<tbody>{"".join(trs)}</tbody></table>'
+            + (f'<p class="market-note">{esc(note)}</p>' if note else "")
+            + (f'<p class="market-asof">{esc(asof)}</p>' if asof else "")
+            + "</div>"
+        )
+        sections.append(section(no, sid, "市场行情", f"{len(market['rows'])} 项", body))
+
+    # 资本观察（长文）保持压轴
     capital = data.get("capital") or {}
     if capital.get("paragraphs"):
         no += 1
@@ -641,8 +655,8 @@ def build_index(issues: list[dict], site: str, edition: str, css: str) -> str:
       <p class="imprint">FRONTIER AI DAILY · 共 {len(issues)} 期</p>
     </div>
   </div>
-  <p class="archive-lead">每天一份：国际与国内大厂动态、其他要闻、BTC / ETH / SOL 与金银行情、
-  资本观察、模型版本、GitHub 热榜与网站推荐。点日期读当期，{latest}。</p>
+  <p class="archive-lead">每天一份：国际与国内大厂动态、模型版本、GitHub 热榜、网站发现、资本动态、
+BTC / ETH / SOL 与金银行情，以及压轴的资本观察。点日期读当期，{latest}。</p>
 </header>
 <div class="archive-years">
 {''.join(blocks)}

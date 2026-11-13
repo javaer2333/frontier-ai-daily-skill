@@ -117,13 +117,23 @@ def main(argv: list[str]) -> int:
     if missing:
         warn("国际版块未覆盖：" + "、".join(missing))
 
-    for field in ("china", "other"):
-        rows = data.get(field) or []
-        if not rows:
-            warn(f"{field} 为空")
-        for i, item in enumerate(rows):
-            check_story(item, f"{field}[{i}]")
-            total += 1
+    china_rows = data.get("china") or []
+    if not china_rows:
+        warn("china 为空")
+    for i, item in enumerate(china_rows):
+        check_story(item, f"china[{i}]")
+        total += 1
+
+    capital_news = data.get("capital_news")
+    if capital_news is None:
+        capital_news = data.get("other") or []
+        if capital_news:
+            warn("使用已废弃的 other 字段（历史期兼容），新期刊请写 capital_news")
+    if not capital_news:
+        warn("capital_news（资本动态）为空")
+    for i, item in enumerate(capital_news):
+        check_story(item, f"capital_news[{i}]")
+        total += 1
 
     market = data.get("market") or {}
     rows = market.get("rows") or []

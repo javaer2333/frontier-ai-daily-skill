@@ -14,12 +14,12 @@
 | `highlights` | object[] | 可选 | 头版「今日看点」3 条：`title`、`source`；缺省自动取国际/国内/其他各版首条 |
 | `international` | object[] | ✅ | 按公司分组：`{company, items:[…]}`，建议覆盖 Anthropic / OpenAI / Google / xAI / Apple |
 | `china` | object[] | ✅ | 国内条目数组，每条 `{title, text, source}` |
-| `other` | object[] | ✅ | 其他动态，同上 |
+| `capital_news` | object[] | ✅ | 资本动态（06 版）：融资并购、IPO、算力/数据中心投资、影响资本的监管。历史期可继续用 `other`，缺 `capital_news` 时渲染器自动回退 |
 | `market` | object | ✅ | 行情，见下 |
-| `capital` | object | 可选 | 资本观察，见下；固定渲染为最后一版，为空则整版隐藏 |
+| `capital` | object | 可选 | 资本观察（长文，压轴），见下；为空则整版隐藏 |
 | `models` | object | 可选 | 模型动态，见下；为空则整版隐藏 |
 | `github` | object | 可选 | GitHub 热榜，见下 |
-| `sites` | object | 可选 | 网站推荐，见下 |
+| `sites` | object | 可选 | 网站发现，见下 |
 
 ## 条目（story）
 
@@ -36,6 +36,11 @@
 - `source` 也可以只写 URL 字符串，渲染器会显示「来源」。
 - 标题不要堆术语；数字必须与来源一致；不确定的加「据媒体报道」。
 - 同一件事只写一条；不同公司的同一事件可分别挂在各自公司下，但摘要不要复制粘贴。
+
+## 页面顺序
+
+01 国际 → 02 国内 → 03 模型动态 → 04 GitHub 热榜 → 05 网站发现 → 06 资本动态 →
+07 市场行情 → 08 资本观察。缺数据的版面自动隐藏，编号前移。
 
 ## market
 

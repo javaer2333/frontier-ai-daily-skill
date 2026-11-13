@@ -37,10 +37,12 @@ Apple 的关注面：Apple Intelligence 功能与国行进展、Siri 改版、�
 "AI Act" OR "芯片出口" OR "算力" <日期>
 ```
 
-## 4. 其他动态
+## 4. 资本动态（只放资本相关）
 
-政策监管（欧盟 AI Act、美国出口管制、国内备案与标准）、芯片与算力（英伟达、台积电、存储、电力）、
-机器人与具身智能、融资并购、论文与开源（arXiv 热门、Hugging Face 趋势、GitHub）。
+短讯来源：融资与并购公告、IPO 招股/定价、算力与数据中心投资、云厂商 capex、
+影响资本流向的监管与政策（出口管制、AI Act 的合规成本）。
+**模型发布、版本更新、基准成绩不要放这里**，统一进 `models` / 模型动态版。
+每条写清金额、估值、领投方或交易对手；没有数字的交易就写清「谁和谁、做什么」。
 
 ## 5. 行情（直接调接口）
 
@@ -63,7 +65,7 @@ python3 "$SKILL_DIR/scripts/fetch_trending.py" --limit 8 [--since daily|weekly|m
 - 需要补 `desc_zh`：先读懂仓库 README 的第一段，再用自己的话写「它是什么 + 解决什么问题」，40–70 字。
 - 与 AI 无关的经典项目（react、rails）可以保留，但中文简介要说明它和当下 AI 工作流的关系，或直接换成更相关的前 8 名。
 
-## 7. 网站推荐
+## 7. 网站发现
 
 - 来源：Product Hunt 日榜、Hacker News Show HN、少数派、GitHub Trending、Toolify、Futurepedia。
 - **实测**：`curl -sI -m 10 <url>` 返回 200（或 30x 到 200）才可推荐。
@@ -89,5 +91,6 @@ python3 "$SKILL_DIR/scripts/fetch_trending.py" --limit 8 [--since daily|weekly|m
 - [ ] 模型动态都带 MM-DD 与出处；传闻有标注
 - [ ] GitHub 8 条都有中文简介
 - [ ] 网站 2–3 个，均实测 200，与近 7 天不重复
+- [ ] 资本动态只有资本内容（没有模型发布/版本更新）
 - [ ] 资本观察 ≥500 字，数字都能在本期其它位置对上
 - [ ] `check_data.py` 无 error；`reports/latest.html` 已更新
