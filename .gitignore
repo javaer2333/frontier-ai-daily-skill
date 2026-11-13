@@ -1,0 +1,14 @@
+# 用户数据与产物
+/data/
+/reports/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 编辑器 / 系统
+.DS_Store
+.idea/
+.vscode/
