@@ -172,8 +172,8 @@ def main(argv: list[str]) -> int:
         if not str(row.get("desc") or "").strip():
             err(f"sites.rows[{i}] 缺少 desc")
 
-    if not str(data.get("takeaway") or "").strip():
-        warn("缺少 takeaway（一句话观察）")
+    if not (data.get("capital") or {}).get("paragraphs"):
+        warn("缺少 capital（资本观察，压轴版面）")
 
     print(f"检查：{path}  ·  {date or '?'} 第 {data.get('issue', '?')} 期  ·  条目 {total} 条")
     for w in warnings:

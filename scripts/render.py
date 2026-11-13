@@ -186,7 +186,6 @@ def reading_minutes(data: dict) -> int:
     chars = sum(len(str(i.get("text") or "")) + len(str(i.get("title") or "")) for i in collect_items(data))
     cap = data.get("capital") or {}
     chars += sum(len(str(p)) for p in cap.get("paragraphs") or [])
-    chars += len(str(data.get("takeaway") or ""))
     chars += sum(len(str(r.get("text") or "")) for r in (data.get("models") or {}).get("rows") or [])
     return max(3, round(chars / 450))
 
@@ -362,29 +361,6 @@ def build_page(data: dict, issues: list[dict], site: str, motto: str, edition: s
         )
         sections.append(section(no, sid, "市场行情", f"{len(market['rows'])} 项", body))
 
-    capital = data.get("capital") or {}
-    if capital.get("paragraphs"):
-        no += 1
-        sid = f"s-{no}"
-        index_entries.append((sid, "资本流动方向", f"{len(capital['paragraphs'])} 段"))
-        ps = "".join(f"<p>{esc(p)}</p>" for p in capital["paragraphs"])
-        flows = capital.get("flows") or []
-        flows_html = ""
-        if flows:
-            lis = "".join(
-                f'<li><span class="flow-label">{esc(f.get("label"))}</span>'
-                f'<span class="flow-text">{esc(f.get("text"))}</span></li>'
-                for f in flows
-            )
-            flows_html = f'<ul class="flows">{lis}</ul>'
-        cap_title = str(capital.get("title") or "")
-        note_bits = [esc(cap_title)] if cap_title else []
-        if capital.get("as_of"):
-            note_bits.append(esc(capital["as_of"]))
-        note = '<span class="accent">本版导读</span>' + " · ".join(note_bits) if note_bits else None
-        body = f'<div class="prose" style="padding:22px 0 0">{ps}{flows_html}</div>'
-        sections.append(section(no, sid, "资本流动方向", "综述", body, note=note))
-
     models = data.get("models") or {}
     if models.get("rows"):
         no += 1
@@ -458,17 +434,29 @@ def build_page(data: dict, issues: list[dict], site: str, motto: str, edition: s
         note = esc(sites.get("as_of")) if sites.get("as_of") else None
         sections.append(section(no, sid, "网站推荐", f"{len(sites['rows'])} 个", body, note=note))
 
-    takeaway = str(data.get("takeaway") or "").strip()
-    if takeaway:
-        index_entries.append(("s-takeaway", "一句话观察", ""))
-        sections.append(
-            '<section class="page" id="s-takeaway" aria-labelledby="s-takeaway-t">'
-            '<header class="page-head"><span class="page-no">末</span>'
-            '<h2 id="s-takeaway-t">一句话观察</h2><span class="page-count">趋势判断</span></header>'
-            f'<div class="closing"><div class="kicker">观察</div>'
-            f"<blockquote>{esc(takeaway)}</blockquote>"
-            f"<cite>—— {esc(site)} · 第 {issue_no} 期</cite></div></section>"
-        )
+    # 资本观察放在最后一版（原「一句话观察」的位置）
+    capital = data.get("capital") or {}
+    if capital.get("paragraphs"):
+        no += 1
+        sid = f"s-{no}"
+        index_entries.append((sid, "资本观察", f"{len(capital['paragraphs'])} 段"))
+        ps = "".join(f"<p>{esc(p)}</p>" for p in capital["paragraphs"])
+        flows = capital.get("flows") or []
+        flows_html = ""
+        if flows:
+            lis = "".join(
+                f'<li><span class="flow-label">{esc(f.get("label"))}</span>'
+                f'<span class="flow-text">{esc(f.get("text"))}</span></li>'
+                for f in flows
+            )
+            flows_html = f'<ul class="flows">{lis}</ul>'
+        cap_title = str(capital.get("title") or "")
+        note_bits = [esc(cap_title)] if cap_title else []
+        if capital.get("as_of"):
+            note_bits.append(esc(capital["as_of"]))
+        note = '<span class="accent">本版导读</span>' + " · ".join(note_bits) if note_bits else None
+        body = f'<div class="prose" style="padding:22px 0 0">{ps}{flows_html}</div>'
+        sections.append(section(no, sid, "资本观察", "综述", body, note=note))
 
     # --- 头版
     hl_html = ""
@@ -654,7 +642,7 @@ def build_index(issues: list[dict], site: str, edition: str, css: str) -> str:
     </div>
   </div>
   <p class="archive-lead">每天一份：国际与国内大厂动态、其他要闻、BTC / ETH / SOL 与金银行情、
-  资本流向、模型版本、GitHub 热榜与网站推荐。点日期读当期，{latest}。</p>
+  资本观察、模型版本、GitHub 热榜与网站推荐。点日期读当期，{latest}。</p>
 </header>
 <div class="archive-years">
 {''.join(blocks)}

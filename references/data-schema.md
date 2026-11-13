@@ -16,11 +16,10 @@
 | `china` | object[] | ✅ | 国内条目数组，每条 `{title, text, source}` |
 | `other` | object[] | ✅ | 其他动态，同上 |
 | `market` | object | ✅ | 行情，见下 |
-| `capital` | object | 可选 | 资本流向，见下；为空则整版隐藏 |
+| `capital` | object | 可选 | 资本观察，见下；固定渲染为最后一版，为空则整版隐藏 |
 | `models` | object | 可选 | 模型动态，见下；为空则整版隐藏 |
 | `github` | object | 可选 | GitHub 热榜，见下 |
 | `sites` | object | 可选 | 网站推荐，见下 |
-| `takeaway` | string | 可选 | 一句话观察，展示为末版大字引用 |
 
 ## 条目（story）
 
@@ -60,7 +59,7 @@
 
 ```jsonc
 {
-  "title": "一句本版标题（可省略，省略时版面名仍为「资本流动方向」）",
+  "title": "一句本版标题（可省略，版面名固定为「资本观察」）",
   "as_of": "数据来源与汇总时间",
   "paragraphs": ["第一段", "第二段", "…"],   // 合计 ≥500 字，建议 6–9 段
   "flows": [ { "label": "关键数字", "text": "一句话解释" } ]  // 3–4 条，渲染为表格行

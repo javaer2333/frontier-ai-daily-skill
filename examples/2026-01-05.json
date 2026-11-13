@@ -6,62 +6,171 @@
   "headline": {
     "title": "示例头条：一家公司把模型推理成本砍掉了三成",
     "text": "这是一条示例数据，用来演示版式，不代表真实新闻。摘要通常写清谁、做了什么、关键数字，以及为什么值得关注，长度约 60 到 150 字。",
-    "source": { "label": "示例来源", "url": "https://example.com/headline" }
+    "source": {
+      "label": "示例来源",
+      "url": "https://example.com/headline"
+    }
   },
   "highlights": [
-    { "title": "示例看点一：模型价格战继续", "source": { "label": "示例来源", "url": "https://example.com/h1" } },
-    { "title": "示例看点二：算力合同再加码", "source": { "label": "示例来源", "url": "https://example.com/h2" } },
-    { "title": "示例看点三：端侧模型进入国行设备", "source": { "label": "示例来源", "url": "https://example.com/h3" } }
+    {
+      "title": "示例看点一：模型价格战继续",
+      "source": {
+        "label": "示例来源",
+        "url": "https://example.com/h1"
+      }
+    },
+    {
+      "title": "示例看点二：算力合同再加码",
+      "source": {
+        "label": "示例来源",
+        "url": "https://example.com/h2"
+      }
+    },
+    {
+      "title": "示例看点三：端侧模型进入国行设备",
+      "source": {
+        "label": "示例来源",
+        "url": "https://example.com/h3"
+      }
+    }
   ],
   "international": [
     {
       "company": "Anthropic",
       "items": [
-        { "title": "示例：Anthropic 发布新版模型", "text": "示例摘要：新版本在长上下文与工具调用上做了更新，定价与此前一致，已向 API 用户开放。", "source": { "label": "示例来源", "url": "https://example.com/a1" } }
+        {
+          "title": "示例：Anthropic 发布新版模型",
+          "text": "示例摘要：新版本在长上下文与工具调用上做了更新，定价与此前一致，已向 API 用户开放。",
+          "source": {
+            "label": "示例来源",
+            "url": "https://example.com/a1"
+          }
+        }
       ]
     },
     {
       "company": "OpenAI",
       "items": [
-        { "title": "示例：OpenAI 调整企业版套餐", "text": "示例摘要：企业版新增管理功能，按席位计费的档位做了合并，官方称不影响已有合同。", "source": { "label": "示例来源", "url": "https://example.com/o1" } }
+        {
+          "title": "示例：OpenAI 调整企业版套餐",
+          "text": "示例摘要：企业版新增管理功能，按席位计费的档位做了合并，官方称不影响已有合同。",
+          "source": {
+            "label": "示例来源",
+            "url": "https://example.com/o1"
+          }
+        }
       ]
     },
     {
       "company": "Google",
       "items": [
-        { "title": "示例：Gemini 增加视频输入", "text": "示例摘要：开发者接口开始支持视频理解，按输入时长计费，先在部分地区开放。", "source": { "label": "示例来源", "url": "https://example.com/g1" } }
+        {
+          "title": "示例：Gemini 增加视频输入",
+          "text": "示例摘要：开发者接口开始支持视频理解，按输入时长计费，先在部分地区开放。",
+          "source": {
+            "label": "示例来源",
+            "url": "https://example.com/g1"
+          }
+        }
       ]
     },
     {
       "company": "xAI",
       "items": [
-        { "title": "示例：Grok 接入新的数据源", "text": "示例摘要：对话产品新增一个实时数据源，官方称延迟下降，但未公布覆盖范围。", "source": { "label": "示例来源", "url": "https://example.com/x1" } }
+        {
+          "title": "示例：Grok 接入新的数据源",
+          "text": "示例摘要：对话产品新增一个实时数据源，官方称延迟下降，但未公布覆盖范围。",
+          "source": {
+            "label": "示例来源",
+            "url": "https://example.com/x1"
+          }
+        }
       ]
     },
     {
       "company": "Apple",
       "items": [
-        { "title": "示例：Apple Intelligence 增加语言", "text": "示例摘要：系统更新把支持语言扩展到更多地区，端侧模型体积未变，功能分批放开。", "source": { "label": "示例来源", "url": "https://example.com/ap1" } }
+        {
+          "title": "示例：Apple Intelligence 增加语言",
+          "text": "示例摘要：系统更新把支持语言扩展到更多地区，端侧模型体积未变，功能分批放开。",
+          "source": {
+            "label": "示例来源",
+            "url": "https://example.com/ap1"
+          }
+        }
       ]
     }
   ],
   "china": [
-    { "title": "示例：国内厂商开源新模型", "text": "示例摘要：权重在开源社区发布，上下文长度与上一代持平，推理成本据称下降，具体基准待第三方复现。", "source": { "label": "示例来源", "url": "https://example.com/c1" } },
-    { "title": "示例：智能体产品上线", "text": "示例摘要：面向办公场景的智能体开始公测，支持表格与网页操作，按任务计费。", "source": { "label": "示例来源", "url": "https://example.com/c2" } }
+    {
+      "title": "示例：国内厂商开源新模型",
+      "text": "示例摘要：权重在开源社区发布，上下文长度与上一代持平，推理成本据称下降，具体基准待第三方复现。",
+      "source": {
+        "label": "示例来源",
+        "url": "https://example.com/c1"
+      }
+    },
+    {
+      "title": "示例：智能体产品上线",
+      "text": "示例摘要：面向办公场景的智能体开始公测，支持表格与网页操作，按任务计费。",
+      "source": {
+        "label": "示例来源",
+        "url": "https://example.com/c2"
+      }
+    }
   ],
   "other": [
-    { "title": "示例：监管机构发布新指引", "text": "示例摘要：指引要求生成内容做标识，给出过渡期，细则由行业组织制定。", "source": { "label": "示例来源", "url": "https://example.com/t1" } },
-    { "title": "示例：数据中心签署供电协议", "text": "示例摘要：园区与电力公司签订长期协议，一期容量与投产时间已披露。", "source": { "label": "示例来源", "url": "https://example.com/t2" } }
+    {
+      "title": "示例：监管机构发布新指引",
+      "text": "示例摘要：指引要求生成内容做标识，给出过渡期，细则由行业组织制定。",
+      "source": {
+        "label": "示例来源",
+        "url": "https://example.com/t1"
+      }
+    },
+    {
+      "title": "示例：数据中心签署供电协议",
+      "text": "示例摘要：园区与电力公司签订长期协议，一期容量与投产时间已披露。",
+      "source": {
+        "label": "示例来源",
+        "url": "https://example.com/t2"
+      }
+    }
   ],
   "market": {
     "as_of": "行情时点：2026-01-05 09:30（北京时间）",
     "source": "CoinGecko / gold-api.com",
     "rows": [
-      { "name": "BTC", "price": "$101,234", "change": "+1.24%", "dir": "up" },
-      { "name": "ETH", "price": "$3,456.78", "change": "+0.82%", "dir": "up" },
-      { "name": "SOL", "price": "$201.45", "change": "-0.36%", "dir": "down" },
-      { "name": "黄金 XAU/USD", "price": "$4,012.30/oz", "change": "+0.21%", "dir": "up" },
-      { "name": "白银 XAG/USD", "price": "$51.20/oz", "change": "0.00%", "dir": "flat" }
+      {
+        "name": "BTC",
+        "price": "$101,234",
+        "change": "+1.24%",
+        "dir": "up"
+      },
+      {
+        "name": "ETH",
+        "price": "$3,456.78",
+        "change": "+0.82%",
+        "dir": "up"
+      },
+      {
+        "name": "SOL",
+        "price": "$201.45",
+        "change": "-0.36%",
+        "dir": "down"
+      },
+      {
+        "name": "黄金 XAU/USD",
+        "price": "$4,012.30/oz",
+        "change": "+0.21%",
+        "dir": "up"
+      },
+      {
+        "name": "白银 XAG/USD",
+        "price": "$51.20/oz",
+        "change": "0.00%",
+        "dir": "flat"
+      }
     ],
     "note": "示例解读：风险资产与贵金属同向，说明主导变量是流动性而不是避险情绪；这段只做版式示例，不构成任何建议。"
   },
@@ -77,32 +186,94 @@
       "最后一段给接下来要盯的两三个指标，比如某场定价会、某个季度的资本开支指引、某类资产的资金流向。结尾不写投资建议，只写可验证的观察点，方便下一期继续跟进；示例文本在这里补足字数，让校验脚本不至于因为正文过短而报警，示例正文到此结束。"
     ],
     "flows": [
-      { "label": "数倍认购", "text": "示例：某笔发行的订单达到发售规模数倍。" },
-      { "label": "1.2 万亿美元", "text": "示例：投行讨论中的估值目标。" },
-      { "label": "+35%", "text": "示例：本季度资本开支同比增速。" }
+      {
+        "label": "数倍认购",
+        "text": "示例：某笔发行的订单达到发售规模数倍。"
+      },
+      {
+        "label": "1.2 万亿美元",
+        "text": "示例：投行讨论中的估值目标。"
+      },
+      {
+        "label": "+35%",
+        "text": "示例：本季度资本开支同比增速。"
+      }
     ]
   },
   "models": {
     "as_of": "示例：收录 01-01 以来有公开出处的版本更新",
     "rows": [
-      { "region": "国际", "vendor": "OpenAI", "name": "GPT-Example", "date": "01-03", "text": "示例：上下文与价格未变，新增工具调用格式。", "source": { "label": "示例来源", "url": "https://example.com/m1" } },
-      { "region": "国内", "vendor": "示例厂商", "name": "Example-1.0", "date": "01-04", "text": "示例：开源权重，支持 128K 上下文，定价待公布。", "source": { "label": "示例来源", "url": "https://example.com/m2" } }
+      {
+        "region": "国际",
+        "vendor": "OpenAI",
+        "name": "GPT-Example",
+        "date": "01-03",
+        "text": "示例：上下文与价格未变，新增工具调用格式。",
+        "source": {
+          "label": "示例来源",
+          "url": "https://example.com/m1"
+        }
+      },
+      {
+        "region": "国内",
+        "vendor": "示例厂商",
+        "name": "Example-1.0",
+        "date": "01-04",
+        "text": "示例：开源权重，支持 128K 上下文，定价待公布。",
+        "source": {
+          "label": "示例来源",
+          "url": "https://example.com/m2"
+        }
+      }
     ]
   },
   "github": {
     "as_of": "热榜抓取：2026-01-05 09:30（北京时间）· 示例数据",
     "rows": [
-      { "repo": "example/agent-kit", "url": "https://github.com/example/agent-kit", "desc": "A minimal toolkit for building tool-using agents.", "desc_zh": "示例：一套最小化的智能体工具箱，把工具调用、重试和日志封好，适合快速搭原型。", "lang": "Python", "stars": "12,345", "today": "876" },
-      { "repo": "example/site-gen", "url": "https://github.com/example/site-gen", "desc": "Static site generator with zero config.", "desc_zh": "示例：零配置静态站点生成器，把 Markdown 变成可部署的页面，适合做文档与博客。", "lang": "TypeScript", "stars": "8,210", "today": "432" },
-      { "repo": "example/infer", "url": "https://github.com/example/infer", "desc": "Fast local inference for small models.", "desc_zh": "示例：面向小模型的本地推理引擎，重点优化显存占用和首字延迟，适合端侧实验。", "lang": "Rust", "stars": "6,780", "today": "210" }
+      {
+        "repo": "example/agent-kit",
+        "url": "https://github.com/example/agent-kit",
+        "desc": "A minimal toolkit for building tool-using agents.",
+        "desc_zh": "示例：一套最小化的智能体工具箱，把工具调用、重试和日志封好，适合快速搭原型。",
+        "lang": "Python",
+        "stars": "12,345",
+        "today": "876"
+      },
+      {
+        "repo": "example/site-gen",
+        "url": "https://github.com/example/site-gen",
+        "desc": "Static site generator with zero config.",
+        "desc_zh": "示例：零配置静态站点生成器，把 Markdown 变成可部署的页面，适合做文档与博客。",
+        "lang": "TypeScript",
+        "stars": "8,210",
+        "today": "432"
+      },
+      {
+        "repo": "example/infer",
+        "url": "https://github.com/example/infer",
+        "desc": "Fast local inference for small models.",
+        "desc_zh": "示例：面向小模型的本地推理引擎，重点优化显存占用和首字延迟，适合端侧实验。",
+        "lang": "Rust",
+        "stars": "6,780",
+        "today": "210"
+      }
     ]
   },
   "sites": {
     "as_of": "示例：站点均于 2026-01-05 09:30 实测返回 200",
     "rows": [
-      { "name": "Example Tools", "url": "https://example.com", "tag": "工具", "desc": "示例：一个在线小工具集合，覆盖格式转换、图片压缩和二维码生成，免注册即可用。" },
-      { "name": "Example Papers", "url": "https://example.org", "tag": "论文", "desc": "示例：按主题聚合最新论文的阅读站，支持按引用量与代码可用性筛选，适合追进展。" }
+      {
+        "name": "Example Tools",
+        "url": "https://example.com",
+        "tag": "工具",
+        "desc": "示例：一个在线小工具集合，覆盖格式转换、图片压缩和二维码生成，免注册即可用。"
+      },
+      {
+        "name": "Example Papers",
+        "url": "https://example.org",
+        "tag": "论文",
+        "desc": "示例：按主题聚合最新论文的阅读站，支持按引用量与代码可用性筛选，适合追进展。"
+      }
     ]
-  },
-  "takeaway": "示例观察：当融资端和公开市场给出两套定价时，真正稀缺的不是模型能力，而是能在低折现率下拿到份额的资格。"
+  }
 }

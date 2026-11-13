@@ -54,6 +54,9 @@ class RenderTest(unittest.TestCase):
         self.assertIn("今日看点", report)
         self.assertIn("（本期完）", report)
         self.assertNotIn("None", report)
+        # 资本观察压轴，旧的「一句话观察」不再出现
+        self.assertGreater(report.index("资本观察"), report.index("网站推荐"))
+        self.assertNotIn("一句话观察", report)
         # 点击报眼点阵可切到前一天
         self.assertIn('href="2026-01-04.html"', report)
         self.assertIn('aria-current="page"', report)

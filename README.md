@@ -10,7 +10,7 @@
 ## 特性
 
 - **固定栏目**：头条、国际（Anthropic / OpenAI / Google / xAI / Apple）、国内、其他动态、
-  行情（BTC / ETH / SOL / 黄金 / 白银）、资本流动、模型动态、GitHub 热榜、网站推荐、一句话观察。
+  行情（BTC / ETH / SOL / 黄金 / 白银）、模型动态、GitHub 热榜、网站推荐、压轴的**资本观察**。
 - **报纸版式**：报头与报眼（期号 + 大号日期点阵 + 当月日历）、数据带、头版双栏、
   每版两栏、上一期 / 下一期、本期完。
 - **可点日历**：报眼里每个有刊的日期都能直接点进那一期。
@@ -87,7 +87,7 @@ python3 scripts/render.py --data data/2026-01-05.json --out reports \
 生成今日「前沿 AI 早报」。项目目录：<项目路径>/ai-daily
 读 <技能目录>/SKILL.md，按工作流采集、写 data/YYYY-MM-DD.json，
 跑 check_data.py 与 render.py，最后 present reports/YYYY-MM-DD.html；
-聊天里只给精简版（头条、行情表、GitHub 前 3、网站推荐、一句话观察）。
+聊天里只给精简版（头条、行情表、GitHub 前 3、网站推荐、资本观察结论）。
 ```
 
 ## 测试

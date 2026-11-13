@@ -70,7 +70,7 @@ python3 "$SKILL_DIR/scripts/fetch_trending.py" --limit 8 [--since daily|weekly|m
 - 最近 7 天推荐过的站点不要重复（可维护 `data/sites-history.json`，或人工比对）。
 - 每条写清「它替读者省掉哪一步」，不要写「很强大、值得一试」这种空话。
 
-## 8. 资本流向
+## 8. 资本观察
 
 可写的东西：融资额与估值、领投方、发债与信贷、capex 指引、IPO 定价与认购、数据中心与电力约束、
 加密 ETF 净流入、黄金白银、国内产业资本入股与开源模型支出份额。
@@ -89,5 +89,5 @@ python3 "$SKILL_DIR/scripts/fetch_trending.py" --limit 8 [--since daily|weekly|m
 - [ ] 模型动态都带 MM-DD 与出处；传闻有标注
 - [ ] GitHub 8 条都有中文简介
 - [ ] 网站 2–3 个，均实测 200，与近 7 天不重复
-- [ ] 资本流向 ≥500 字，数字都能在本期其它位置对上
+- [ ] 资本观察 ≥500 字，数字都能在本期其它位置对上
 - [ ] `check_data.py` 无 error；`reports/latest.html` 已更新
